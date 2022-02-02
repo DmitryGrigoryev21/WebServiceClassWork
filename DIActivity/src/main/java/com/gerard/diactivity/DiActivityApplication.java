@@ -38,6 +38,7 @@ public class DiActivityApplication {
 //        MovieLister lister = context.getBean(MovieLister.class);
 //        List<Movie> movies = lister.listMoviesDirectedBy("Steven Spielberg");
 
+
 //        for(Movie movie : movies){
 //            System.out.println(movie.getTitle());
 //        }
