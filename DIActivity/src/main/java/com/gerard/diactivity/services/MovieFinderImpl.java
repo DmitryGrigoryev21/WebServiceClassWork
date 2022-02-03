@@ -10,26 +10,24 @@ import java.util.Optional;
 @Service
 public class MovieFinderImpl implements MovieFinder{
 
-    private MovieRepo movieRepo;
+    private final MovieRepo movieRepo;
 
     MovieFinderImpl(MovieRepo movieRepo){this.movieRepo=movieRepo;}
 
     @Override
     public List<Movie> findAllMovies() {
-        List<Movie> movies = (List<Movie>) movieRepo.findAll();
-        return movies;
+        return (List<Movie>) movieRepo.findAll();
     }
 
     @Override
     public Optional<Movie> findById(int Id) {
-        Optional<Movie> movie = movieRepo.findById(Id);
-        return movie;
+        return movieRepo.findById(Id);
     }
 
+    //no need for format validation because it would be done before being passed to api
     @Override
     public List<Movie> saveAllMovies(List<Movie> movieList) {
-        List<Movie> movieResponse = (List<Movie>) movieRepo.saveAll(movieList);
-        return movieResponse;
+        return (List<Movie>) movieRepo.saveAll(movieList);
     }
 
     @Override
@@ -55,8 +53,6 @@ public class MovieFinderImpl implements MovieFinder{
         catch (Exception e){
             return false;
         }
-
-
     }
 }
 

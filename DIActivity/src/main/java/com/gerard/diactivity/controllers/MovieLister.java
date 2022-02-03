@@ -16,41 +16,35 @@ public class MovieLister {
 
     @GetMapping("/getmovie/all")
     public List<Movie> listMoviesAll(){
-        List<Movie> allMovies = movieFinder.findAllMovies();
-        return allMovies;
+        return movieFinder.findAllMovies();
     }
 
     @GetMapping("/getmovie/director/{director}")
     public List<Movie> listMoviesDirectedBy(@PathVariable String director){
-
-
         List<Movie> allMovies = movieFinder.findAllMovies();
-
         allMovies.removeIf(movie -> !movie.getDirector().equals(director));
-
         return allMovies;
     }
 
     @GetMapping("/getmovie/id/{Id}")
     public Optional<Movie> listMoviesById(@PathVariable int Id){
-
-        Optional<Movie> iMovie = movieFinder.findById(Id);
-
-        return iMovie;
+        return movieFinder.findById(Id);
     }
 
+    //no need for format validation because it would be done before being passed to api
     @PostMapping("/addmovie")
     public String newMovies(@RequestBody List<Movie> movieList)
     {
-        String out = "";
+        StringBuilder out = new StringBuilder();
         try {
             List<Movie> nMovies = movieFinder.saveAllMovies(movieList);
             for(Movie movie : nMovies){
-            out += "Successfully added " + movie.getTitle() + " by " + movie.getDirector() + ".\n";
+            out.append("Successfully added ").append(movie.getTitle()).append(" by ").append(movie.getDirector()).append(".\n");
             }
-            return out;
+            return out.toString();
         }
         catch (Exception e) {
+            System.out.println(e);
             return "Aborted";
         }
     }
@@ -59,7 +53,7 @@ public class MovieLister {
     public String deleteMovie(@PathVariable int Id) {
         boolean temp = movieFinder.deleteMovie(Id);
         String response;
-        if (temp == true)
+        if (temp)
             response = "Success";
         else
             response = "Aborted";
@@ -70,7 +64,7 @@ public class MovieLister {
     public String updateEmployee(@RequestBody Movie movie, @PathVariable int Id) {
         boolean temp = movieFinder.updateMovie(Id,movie);
         String response;
-        if (temp == true)
+        if (temp)
             response = "Success";
         else
             response = "Aborted";
