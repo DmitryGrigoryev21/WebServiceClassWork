@@ -12,27 +12,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Setter
 @Getter
-
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
+    @Column(unique = true, name = "movieid")
+    String movieId;
+
     String title;
     String director;
-
-//    public Movie(String title, String director) {
-//        this.title = title;
-//        this.director = director;
-//    }
-//
-//    public String getTitle() {
-//        return title;
-//    }
-//
-//    public String getDirector() {
-//        return director;
-//    }
 
 }
