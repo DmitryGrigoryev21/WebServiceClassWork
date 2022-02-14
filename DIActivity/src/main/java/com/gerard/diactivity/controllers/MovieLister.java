@@ -68,12 +68,12 @@ public class MovieLister {
     }
 
     @PutMapping("/updatemovie/{Id}")
-    public Movie updateEmployee(@RequestBody Movie movie, @PathVariable int Id) {
+    public Movie updateMovie(@RequestBody Movie movie, @PathVariable int Id) {
         return movieFinder.updateMovie(Id,movie);
     }
 
     @PutMapping("/updatemovie/movieId/{Id}")
-    public MovieResponseDTO updateEmployee(@RequestBody Movie movie, @PathVariable String Id) {
+    public MovieResponseDTO updateMovieByMovieId(@RequestBody MovieRequestDTO movie, @PathVariable String Id) {
         return movieFinder.updateMovieByMovieId(Id,movie);
     }
 }

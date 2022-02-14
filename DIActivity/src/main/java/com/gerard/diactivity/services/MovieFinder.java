@@ -16,5 +16,5 @@ public interface MovieFinder {
     public boolean deleteMovie(int Id);
     public boolean deleteMovieByMovieId(String Id);
     public Movie updateMovie(int Id, Movie newMovie);
-    public MovieResponseDTO updateMovieByMovieId(String Id, Movie newMovie);
+    public MovieResponseDTO updateMovieByMovieId(String Id, MovieRequestDTO newMovie);
 }

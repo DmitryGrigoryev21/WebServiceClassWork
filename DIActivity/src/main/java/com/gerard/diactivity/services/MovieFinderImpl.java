@@ -95,11 +95,12 @@ public class MovieFinderImpl implements MovieFinder{
     }
 
     @Override
-    public MovieResponseDTO updateMovieByMovieId(String Id, Movie newMovie) {
+    public MovieResponseDTO updateMovieByMovieId(String Id, MovieRequestDTO newMovie) {
             if (movieRepo.existsMovieByMovieId(Id)) {
                 Movie movie = movieRepo.findMovieByMovieId(Id);
-                movie.setDirector(newMovie.getDirector());
-                movie.setTitle(newMovie.getTitle());
+                Movie movieTemp = requestMapper.modelToEntity(newMovie);
+                movie.setDirector(movieTemp.getDirector());
+                movie.setTitle(movieTemp.getTitle());
                 movieRepo.save(movie);
                 return responseMapper.entityToModel(movie);
             }
