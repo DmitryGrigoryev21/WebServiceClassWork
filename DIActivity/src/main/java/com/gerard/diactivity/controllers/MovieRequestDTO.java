@@ -18,5 +18,6 @@ public class MovieRequestDTO {
 
     public String title;
     public String director;
+    public String lang;
 
 }

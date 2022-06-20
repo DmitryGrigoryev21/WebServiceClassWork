@@ -9,12 +9,13 @@ import java.util.Optional;
 
 public interface MovieFinder {
 
-    public List<Movie> findAllMovies();
+    public List<MovieResponseDTO> findAllMovies();
     public MovieResponseDTO findById(int Id);
-    public MovieResponseDTO findByMovieId(String Id);
+    public MovieResponseDTO findByMovieUUID(String Id);
+    public List<MovieResponseDTO> findByLanguage(String language);
     public MovieResponseDTO saveMovie(MovieRequestDTO movieList);
     public boolean deleteMovie(int Id);
-    public boolean deleteMovieByMovieId(String Id);
+    public boolean deleteMovieByMovieUUID(String Id);
     public Movie updateMovie(int Id, Movie newMovie);
-    public MovieResponseDTO updateMovieByMovieId(String Id, MovieRequestDTO newMovie);
+    public MovieResponseDTO updateMovieByMovieUUID(String Id, MovieRequestDTO newMovie);
 }

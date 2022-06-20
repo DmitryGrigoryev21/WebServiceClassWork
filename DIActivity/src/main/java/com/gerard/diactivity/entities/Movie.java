@@ -18,10 +18,14 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(unique = true, name = "movieid")
-    String movieId;
+    @Column(unique = true, name = "movieuuid")
+    String movieUUID;
 
     String title;
     String director;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "languageuuid", nullable = false)
+    private Language language;
 
 }

@@ -16,19 +16,25 @@ public class MovieLister {
     private MovieFinder movieFinder;
 
     @GetMapping("/getmovie/all")
-    public List<Movie> listMoviesAll(){
+    public List<MovieResponseDTO> listMoviesAll(){
         return movieFinder.findAllMovies();
     }
 
-    @GetMapping("/getmovie/movieId/{Id}")
-    public MovieResponseDTO listMoviesByMovieId(@PathVariable String Id){
-        return movieFinder.findByMovieId(Id);
+    @GetMapping("/getmovie/movieUUID/{Id}")
+    public MovieResponseDTO listMoviesByMovieUUID(@PathVariable String Id){
+        return movieFinder.findByMovieUUID(Id);
     }
 
     @GetMapping("/getmovie/id/{Id}")
     public MovieResponseDTO listMoviesById(@PathVariable int Id){
 
         return movieFinder.findById(Id);
+    }
+
+    @GetMapping("/getmovie/language/{Id}")
+    public List<MovieResponseDTO> listMoviesByLanguage(@PathVariable String Id){
+
+        return movieFinder.findByLanguage(Id);
     }
 
     //no need for format validation because it would be done before being passed to api
@@ -56,9 +62,9 @@ public class MovieLister {
         return response;
     }
 
-    @DeleteMapping("/delmovie/movieId/{Id}")
-    public String deleteMovieByMovieId(@PathVariable String Id) {
-        boolean temp = movieFinder.deleteMovieByMovieId(Id);
+    @DeleteMapping("/delmovie/movieUUID/{Id}")
+    public String deleteMovieByMovieUUID(@PathVariable String Id) {
+        boolean temp = movieFinder.deleteMovieByMovieUUID(Id);
         String response;
         if (temp)
             response = "Success";
@@ -72,8 +78,8 @@ public class MovieLister {
         return movieFinder.updateMovie(Id,movie);
     }
 
-    @PutMapping("/updatemovie/movieId/{Id}")
-    public MovieResponseDTO updateMovieByMovieId(@RequestBody MovieRequestDTO movie, @PathVariable String Id) {
-        return movieFinder.updateMovieByMovieId(Id,movie);
+    @PutMapping("/updatemovie/movieUUID/{Id}")
+    public MovieResponseDTO updateMovieByMovieUUID(@RequestBody MovieRequestDTO movie, @PathVariable String Id) {
+        return movieFinder.updateMovieByMovieUUID(Id,movie);
     }
 }

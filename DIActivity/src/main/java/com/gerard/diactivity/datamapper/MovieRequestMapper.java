@@ -12,7 +12,7 @@ public interface MovieRequestMapper {
     MovieRequestDTO entityToModel(Movie movie);
     @Mappings({
             @Mapping(target = "id", ignore = true),
-            @Mapping(target = "movieId", ignore = true)
+            @Mapping(target = "movieUUID", ignore = true)
     })
     Movie modelToEntity(MovieRequestDTO movieDTO);
 
